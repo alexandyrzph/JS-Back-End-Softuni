@@ -36,6 +36,7 @@ function deleteItem(id) {
     delete data[id];
 }
 
+// generating random id for products in data
 function nextId() {
     return 'xxxxxxxx'.replace(/x/g, () => (Math.random() * 16 | 0).toString(16));
 }
