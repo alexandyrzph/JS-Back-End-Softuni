@@ -1,0 +1,19 @@
+{
+    "asdaf124": {
+        "name": "Widget",
+        "price": 12
+    },
+    "qweryu23": {
+        "name": "CD Player",
+        "price": 59
+    },
+    "131522581311": {
+        "name": "Vape Smok",
+        "price": 120
+    },
+    "13212614120": {
+        "name": "Product 1 ",
+        "price": 13,
+        "promoted": "on"
+    }
+}

@@ -1,0 +1,14 @@
+<h1>Edit Product</h1>
+<a class="catalogBack" href="/catalog">Back to Catalog</a>
+<form method="get" action="/catalog/{{_id}}">
+    <label><span>Name:</span><input type="text" name="name" value="{{name}}"></label>
+    <label><span>Price:</span><input type="number" name="price" value="{{price}}"></label>
+    <label><span>Promoted:</span>
+        {{#if promoted}}
+        <input type="checkbox" name="promoted" checked>
+        {{else}}
+        <input type="checkbox" name="promoted">
+        {{/if}}
+    </label>
+    <input type="submit" value="Confirm changes">
+</form>

@@ -1,0 +1,8 @@
+<h1>Catalog</h1>
+<ul>
+    {{#each products}}
+    {{> listItem}}
+    {{else}}
+    <i>No products in database!</i>
+    {{/each}}
+</ul>

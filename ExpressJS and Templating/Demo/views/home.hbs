@@ -1,0 +1,13 @@
+<h1>Hello, Handlebars!</h1>
+{{#with user}}
+<div>
+    <p>Welcome, {{username}}!</p>
+    <p>Your email is {{email}}!</p>
+</div>
+{{/with}}
+
+{{#if count}}
+<p>Site visited: {{count}}</p>
+{{else}}
+<p>You are the first visitor</p>
+{{/if}}

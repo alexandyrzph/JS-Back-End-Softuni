@@ -1,0 +1,68 @@
+body {
+    background-color: beige;
+}
+
+#content {
+    background-color: white;
+    width: 980px;
+    margin: auto;
+    padding: 32px;
+}
+
+nav ul {
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    background-color: rgb(88, 88, 88);
+    color: white;
+    padding: 8px 26px;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+nav a:hover {
+    background-color: rgb(216, 216, 216);
+    color: black;
+    transition: 200ms;
+}
+
+.italics {
+    font-style: italic;
+}
+
+label {
+    display: block;
+}
+
+label span {
+    display: inline-block;
+    width: 75px;
+}
+
+.catalogBack {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.promoted {
+    color: rgba(255, 150, 13, 0.87);
+}
+
+.edit {
+    text-decoration: none;
+    margin-left: 10px;
+    font-style: italic;
+    color: rgb(128, 128, 128);
+}
+
+.edit:hover {
+    color: black;
+    transition: 200ms;
+}
