@@ -5,7 +5,6 @@ const { homeController, aboutController } = require('./controllers/homeControlle
 const router = require('./router');
 const server = http.createServer(router.main);
 
-
 router.get('/', homeController);
 router.get('/about', aboutController);
 router.get('/catalog', catalogController);
