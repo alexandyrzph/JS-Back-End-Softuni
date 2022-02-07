@@ -1,5 +1,7 @@
 const express = require('express');
 const hbs = require('express-handlebars');
+const initDb = require('./models/index');
+
 const carService = require('./services/cars');
 
 const { about } = require('./controllers/about');
@@ -10,34 +12,39 @@ const { notFound } = require('./controllers/notfound');
 const deleteCar = require('./controllers/delete');
 const editCar = require('./controllers/edit');
 
-const app = express();
+start();
 
-app.engine('hbs', hbs.create({
-    extname: '.hbs'
-}).engine);
+async function start() {
+    await initDb();
+    const app = express();
 
-app.set('view engine', '.hbs');
+    app.engine('hbs', hbs.create({
+        extname: '.hbs'
+    }).engine);
 
-app.use(express.urlencoded({ extended: true }));
-app.use('/static', express.static('static'));
-app.use(carService());
+    app.set('view engine', '.hbs');
 
-app.get('/', home);
-app.get('/about', about);
-app.get('/details/:id', details);
+    app.use(express.urlencoded({ extended: true }));
+    app.use('/static', express.static('static'));
+    app.use(carService());
 
-app.route('/create')
-    .get(create.get)
-    .post(create.post);
+    app.get('/', home);
+    app.get('/about', about);
+    app.get('/details/:id', details);
 
-app.route('/delete/:id')
-    .get(deleteCar.get)
-    .post(deleteCar.post);
+    app.route('/create')
+        .get(create.get)
+        .post(create.post);
 
-app.route('/edit/:id')
-    .get(editCar.get)
-    .post(editCar.post);
+    app.route('/delete/:id')
+        .get(deleteCar.get)
+        .post(deleteCar.post);
 
-app.all('*', notFound);
+    app.route('/edit/:id')
+        .get(editCar.get)
+        .post(editCar.post);
 
-app.listen(3000, () => console.log('Server started on port 3000!'));
+    app.all('*', notFound);
+
+    app.listen(3000, () => console.log('Server started on port 3000!'));
+}
