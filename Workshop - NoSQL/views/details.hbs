@@ -7,28 +7,15 @@
     <a class="btn" href="/">Back</a>
     <a class="btn" href="/attach/{{id}}">Attach Accessory</a>
     <a class="btn" href="/edit/{{id}}">Edit</a>
-    <a class="btn" href="/delete/{{id}}">Delete</a> 
+    <a class="btn" href="/delete/{{id}}">Delete</a>
 </div>
 
-{{#if accessory}}
 <h2>Accessories</h2>
 <div class="accessories">
-    <div class="accessory">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/61J8UP8pySL._SX425_.jpg" alt="stickerName">
-        <h3>Accessory Name</h3>
-        <p>Accessory Description</p>
-    </div>
-    <div class="accessory">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/61J8UP8pySL._SX425_.jpg" alt="stickerName">
-        <h3>Accessory Name</h3>
-        <p>Accessory Description</p>
-    </div>
-    <div class="accessory">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/61J8UP8pySL._SX425_.jpg" alt="stickerName">
-        <h3>Accessory Name</h3>
-        <p>Accessory Description</p>
-    </div>
+    {{#each accessories}}
+    {{> accessory}}
+    {{else}}
     <h3 class="italic">This cube has no accessories yet...</h3>
+    {{/each}}
 </div>
-{{/if}}
 {{/with}}

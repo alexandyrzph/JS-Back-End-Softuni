@@ -1,11 +1,9 @@
 const express = require('express');
 const hbs = require('express-handlebars');
-
 const initDb = require('./models/index');
 
 const carService = require('./services/cars');
 const accessoryService = require('./services/accessory');
-
 
 const { about } = require('./controllers/about');
 const { details } = require('./controllers/details');
@@ -26,7 +24,7 @@ async function start() {
     app.engine('hbs', hbs.create({
         extname: '.hbs'
     }).engine);
-
+    
     app.set('view engine', '.hbs');
 
     app.use(express.urlencoded({ extended: true }));

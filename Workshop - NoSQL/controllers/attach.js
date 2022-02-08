@@ -8,13 +8,22 @@ module.exports = {
                 req.accessory.getAll()
             ]);
 
-            res.render('attach', { title: `Attach accessory`, car, accessories });
+            const existingIds = car.accessories.map(a => a.id.toString());
+            const availableAccessories = accessories.filter(a => existingIds.includes(a.id.toString()) == false);
+
+            res.render('attach', { title: `Attach accessory`, car, accessories: availableAccessories });
         } catch (err) {
             res.redirect('404');
         }
     },
     async post(req, res) {
-        console.log(req.body);
-        res.redirect('/');
+        const carId = req.params.id;
+        const accessoryId = req.body.accessory;
+        try {
+            await req.storage.attachAccessory(carId, accessoryId);
+            res.redirect('/');
+        } catch (err) {
+            res.redirect(`/attach/${carId}`);
+        }
     }
 }
