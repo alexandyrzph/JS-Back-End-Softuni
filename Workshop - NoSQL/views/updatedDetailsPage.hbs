@@ -1,16 +1,10 @@
-{{#with car}}
-<h1>{{name}}</h1>
-<img class="cube" src="/static/assets/{{imgUrl}}">
+<h1>Rubiks Cube</h1>
+<img class="cube" src="https://images-na.ssl-images-amazon.com/images/I/71WS9kb-JFL._SL1300_.jpg">
 <div class="details">
-    <p><span>Description:</span>{{description}}</p>
-    <p><span>Price:</span>{{price}}</p>
-    <a class="btn" href="/">Back</a>
-    <a class="btn" href="/attach/{{id}}">Attach Accessory</a>
-    <a class="btn" href="/edit/{{id}}">Edit</a>
-    <a class="btn" href="/delete/{{id}}">Delete</a> 
+    <p><span>Description:</span>Some Description....</p>
+    <p><span>Difficulty level:</span> 6</p>
+    <a class="btn" href="#">Back</a>
 </div>
-
-{{#if accessory}}
 <h2>Accessories</h2>
 <div class="accessories">
     <div class="accessory">
@@ -30,5 +24,3 @@
     </div>
     <h3 class="italic">This cube has no accessories yet...</h3>
 </div>
-{{/if}}
-{{/with}}

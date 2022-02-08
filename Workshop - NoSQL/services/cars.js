@@ -44,7 +44,12 @@ async function deleteById(id) {
 }
 
 async function updateById(id, car) {
-    await Car.findByIdAndUpdate(id, car);
+    const existing = await Car.findById(id);
+    existing.name = car.name;
+    existing.description = car.description;
+    existing.imgUrl = car.imgUrl || undefined;
+    existing.price = Number(car.price);
+    await existing.save();
 }
 
 module.exports = () => (req, res, next) => {
