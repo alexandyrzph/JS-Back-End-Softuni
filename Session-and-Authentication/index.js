@@ -13,4 +13,4 @@ app.get('/', (req, res) => {
     res.send(`Welcome to the site! You are the first visitor!`);
 });
 
-app.listen(3000, () =>console.log('Server started on port 3000!'));
+app.listen(3000, () => console.log('Server started on port 3000!'));
