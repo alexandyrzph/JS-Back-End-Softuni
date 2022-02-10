@@ -4,7 +4,8 @@ const app = express();
 
 const sessions = {};
 
-app.get('/', (req, res) => {
+function mySession(req, res, next) {
+
     const cookies = (req.headers.cookie || '')
         .split(';')
         .map(c => c.trim())
@@ -12,6 +13,7 @@ app.get('/', (req, res) => {
         .reduce((a, [k, v]) => Object.assign(a, { [k]: v }), {});
 
     console.log('>>>', cookies);
+
 
     let user = sessions[cookies.sessionId];
 
@@ -26,8 +28,16 @@ app.get('/', (req, res) => {
     } else {
         user.visited++;
     }
+    
+    req.session = user;
 
-    res.send(`<p>Hello<p><p>You have visited the page ${user.visited} times</p>`);
+    next();
+}
+
+app.use(mySession);
+
+app.get('/', (req, res) => {
+    res.send(`<p>Hello<p><p>You have visited the page ${req.session.visited} times</p>`);
 });
 
 app.listen(3000, () => console.log('Server started on port 3000!'));
