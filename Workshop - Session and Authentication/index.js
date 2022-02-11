@@ -18,6 +18,7 @@ const editCar = require('./controllers/edit');
 const accessory = require('./controllers/accessory');
 const attach = require('./controllers/attach');
 const auth = require('./controllers/auth');
+const { isLogged } = require('./services/util');
 
 
 start();
@@ -49,24 +50,24 @@ async function start() {
     app.get('/details/:id', details);
 
     app.route('/create')
-        .get(create.get)
-        .post(create.post);
+        .get(isLogged(), create.get)
+        .post(isLogged(), create.post);
 
     app.route('/delete/:id')
-        .get(deleteCar.get)
-        .post(deleteCar.post);
+        .get(isLogged(), deleteCar.get)
+        .post(isLogged(), deleteCar.post);
 
     app.route('/edit/:id')
-        .get(editCar.get)
-        .post(editCar.post);
+        .get(isLogged(), editCar.get)
+        .post(isLogged(), editCar.post);
 
     app.route('/accessory')
-        .get(accessory.get)
-        .post(accessory.post);
+        .get(isLogged(), accessory.get)
+        .post(isLogged(), accessory.post);
 
     app.route('/attach/:id')
-        .get(attach.get)
-        .post(attach.post);
+        .get(isLogged(), attach.get)
+        .post(isLogged(), attach.post);
 
     app.route('/register')
         .get(auth.registerGet)
@@ -76,7 +77,7 @@ async function start() {
         .get(auth.loginGet)
         .post(auth.loginPost);
 
-    app.get('/logout', auth.logout);
+    app.get('/logout', isLogged(), auth.logout);
 
     app.all('*', notFound);
 
