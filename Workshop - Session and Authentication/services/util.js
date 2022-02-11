@@ -7,7 +7,7 @@ function accessoryViewModel(accessory) {
         description: accessory.description,
         imgUrl: accessory.imgUrl,
         price: Number(accessory.price),
-    }
+    };
 }
 
 function carViewModel(car) {

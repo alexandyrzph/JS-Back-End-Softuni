@@ -14,12 +14,15 @@
             <ul>
                 <li><img class="logo" src="/static/images/logo.png"></li>
                 <li><a href="/">Browse</a></li>
+                <li><a href="/about">About</a></li>
+                {{#if hasUser}}
                 <li><a href="/create">Publish car listing</a></li>
                 <li><a href="/accessory">Create Accessory</a></li>
-                <li><a href="/about">About</a></li>
                 <li><a href="/logout">Logout</a></li>
+                {{else}}
                 <li><a href="/login">Login</a></li>
                 <li><a href="/register">Register</a></li>
+                {{/if}}
             </ul>
         </header>
         <main>

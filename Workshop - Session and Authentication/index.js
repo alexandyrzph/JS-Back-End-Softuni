@@ -76,7 +76,7 @@ async function start() {
         .get(auth.loginGet)
         .post(auth.loginPost);
 
-    app.get('/logout', auth.logoutGet);
+    app.get('/logout', auth.logout);
 
     app.all('*', notFound);
 
