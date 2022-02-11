@@ -11,8 +11,12 @@ userSchema.methods.comparePassword = async function (password) {
     return await comparePassword(password, this.hashedPassword);
 }
 
-userSchema.pre('save', async function () {
-    this.hashedPassword = await hashPassword(this.hashedPassword);
+userSchema.pre('save', async function (next) {
+    if (this.isModified('hashedPassword')) {
+        this.hashedPassword = await hashPassword(this.hashedPassword);
+    }
+
+    next();
 });
 
 const User = model('User', userSchema);
