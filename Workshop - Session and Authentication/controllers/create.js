@@ -7,7 +7,8 @@ module.exports = {
             name: req.body.name,
             description: req.body.description,
             imgUrl: req.body.imgUrl || undefined,
-            price: Number(req.body.price)
+            price: Number(req.body.price),
+            owner: req.session.user.id
         }
         
         try {

@@ -11,7 +11,7 @@ module.exports = {
     async post(req, res) {
         const id = req.params.id;
         try {
-            await req.storage.deleteById(id);
+            await req.storage.deleteById(id, req.session.user.id);
             res.redirect('/');
         } catch (err) {
             res.redirect('404');

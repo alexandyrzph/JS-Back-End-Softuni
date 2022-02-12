@@ -8,6 +8,7 @@ module.exports = {
             description: req.body.description,
             imgUrl: req.body.imgUrl || undefined,
             price: Number(req.body.price),
+            owner: req.session.user.id
         };
         try {
             await req.accessory.createAccessory(accessory);
