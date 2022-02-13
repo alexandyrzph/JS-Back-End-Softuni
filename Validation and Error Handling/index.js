@@ -3,10 +3,8 @@ const hbs = require('express-handlebars');
 const initDb = require('./models/index');
 const session = require('express-session');
 
-
 const carService = require('./services/cars');
 const accessoryService = require('./services/accessory');
-const authService = require('./services/auth');
 
 const { about } = require('./controllers/about');
 const { details } = require('./controllers/details');
@@ -18,8 +16,8 @@ const editCar = require('./controllers/edit');
 const accessory = require('./controllers/accessory');
 const attach = require('./controllers/attach');
 const auth = require('./controllers/auth');
+const authRouter = require('./controllers/auth');
 const { isLogged } = require('./services/util');
-
 
 start();
 
@@ -42,8 +40,8 @@ async function start() {
     app.use(express.urlencoded({ extended: true }));
     app.use('/static', express.static('static'));
     app.use(carService());
+    app.use(authRouter);
     app.use(accessoryService());
-    app.use(authService());
 
     app.get('/', home);
     app.get('/about', about);
@@ -68,16 +66,6 @@ async function start() {
     app.route('/attach/:id')
         .get(isLogged(), attach.get)
         .post(isLogged(), attach.post);
-
-    app.route('/register')
-        .get(auth.registerGet)
-        .post(auth.registerPost);
-
-    app.route('/login')
-        .get(auth.loginGet)
-        .post(auth.loginPost);
-
-    app.get('/logout', isLogged(), auth.logout);
 
     app.all('*', notFound);
 
