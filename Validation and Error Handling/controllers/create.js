@@ -1,3 +1,5 @@
+const { errorMapper } = require("../services/util");
+
 module.exports = {
     get(req, res) {
         res.render('create', { title: "Create listing" });
@@ -10,13 +12,14 @@ module.exports = {
             price: Number(req.body.price),
             owner: req.session.user.id
         }
-        
+
         try {
             await req.storage.createCar(car);
             res.redirect('/');
         } catch (err) {
             console.log('Error creating listing.', err);
-            res.redirect('/create');
+            res.locals.errors = errorMapper(err);
+            res.render('create', { title: 'Create listing', car });
         }
     }
 }

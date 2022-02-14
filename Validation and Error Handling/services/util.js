@@ -47,10 +47,29 @@ function isLogged() {
     }
 }
 
+function errorMapper(error) {
+    if (Array.isArray(error)) {
+        return error;
+    } else if (error.name == 'MongoServerError') {
+        if (error.code == 11000) {
+            return [{ msg: 'Username already exist' }];
+        } else {
+            return [{ msg: 'Request error' }];
+        }
+    } else if (error.name == 'ValidationError') {
+        return Object.values(error.errors).map(e => ({ msg: e.message }));
+    } else if (typeof error.name == 'string') {
+        return [{ msg: err.message }]
+    } else {
+        return [{ msg: 'Request error' }];
+    }
+}
+
 module.exports = {
     accessoryViewModel,
     carViewModel,
     hashPassword,
     comparePassword,
-    isLogged
+    isLogged,
+    errorMapper
 };

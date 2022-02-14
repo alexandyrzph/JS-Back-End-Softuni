@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const { body, validationResult } = require('express-validator');
+const { errorMapper } = require('../services/util');
 
 
 const router = Router();
@@ -28,10 +29,8 @@ router.post('/register',
             await req.auth.register(req.body.username, req.body.password);
             res.redirect('/');
         } catch (err) {
-            // console.error(err);
-            res.locals.errors = err;
-            console.log("after", res.locals.errors);
-            res.render('register', { title: 'Register', errors });
+            res.locals.errors = errorMapper(err);
+            res.render('register', { title: 'Register', data: { username: req.body.username } });
         }
     });
 
@@ -44,8 +43,9 @@ router.post('/login', async (req, res) => {
         await req.auth.login(req.body.username, req.body.password);
         res.redirect('/');
     } catch (err) {
-        console.error(err.message);
-        res.redirect('/login');
+        console.error(err);
+        res.locals.errors = [{ msg: err.message }];
+        res.render('login', { title: 'Login' });
     }
 })
 

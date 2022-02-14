@@ -2,13 +2,13 @@
 <div class="form">
     <form action="/create" method="post">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" value="{{car.name}}">
         <label for="name">Description</label>
-        <textarea id="name" name="description"></textarea>
+        <textarea id="name" name="description">{{car.description}}</textarea>
         <label for="image">ImageUrl</label>
-        <input type="text" id="image" name="imgUrl">
+        <input type="text" id="image" name="imgUrl" value="{{car.imgUrl}}">
         <label for="price">Price</label>
-        <input type="number" id="price" name="price">
+        <input type="number" id="price" name="price" value="{{car.price}}">
         <input type="submit" value="Publish">
     </form>
 </div>
