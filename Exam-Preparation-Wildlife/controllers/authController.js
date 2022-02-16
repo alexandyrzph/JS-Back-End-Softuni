@@ -12,7 +12,9 @@ router.get('/register', isGuest(), (req, res) => {
 router.post('/register', isGuest(), async (req, res) => {
 
     try {
-        if (req.body.password != req.body.repeatPassword) {
+        if (req.body.password.trim() == '') {
+            throw new Error('Password is required');
+        } else if (req.body.password != req.body.repeatPassword) {
             throw new Error('Passwords don\'t match');
         }
         const user = await register(req.body.firstName, req.body.lastName, req.body.email, req.body.password);
@@ -28,7 +30,7 @@ router.post('/register', isGuest(), async (req, res) => {
 
         res.render('register', {
             title: 'Register page',
-            data, 
+            data,
             errors
         });
     }

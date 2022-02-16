@@ -24,7 +24,7 @@ async function register(firstName, lastName, email, password) {
 async function login(email, password) {
     const user = await getUserByEmail(email);
     if (!user) {
-        throw new Error('User does\'nt exist!');
+        throw new Error('User doesn\'t exist!');
     }
 
     const hasMatch = await compare(password, user.hashedPassword);
