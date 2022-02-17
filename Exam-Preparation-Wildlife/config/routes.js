@@ -5,6 +5,8 @@ const catalogController = require('../controllers/catalogController');
 const detailsController = require('../controllers/detailsController');
 const editController = require('../controllers/editController');
 const deleteController = require('../controllers/deleteController');
+const voteController = require('../controllers/voteController');
+const profileController = require('../controllers/profileController');
 
 module.exports = (app) => {
     app.use(homeController);
@@ -14,4 +16,6 @@ module.exports = (app) => {
     app.use(detailsController);
     app.use(editController);
     app.use(deleteController);
+    app.use(voteController);
+    app.use(profileController);
 }
