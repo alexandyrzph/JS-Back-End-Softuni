@@ -11,7 +11,7 @@ router.get('/vote/:id/:type', isUser(), async (req, res) => {
 
     try {
         await vote(id, userId, value);
-        res.redirect('/catalog/details/'+ id);
+        res.redirect('/catalog/details/' + id);
     } catch (err) {
         const errors = errorMapper(err);
         res.render('details', { title: 'Post Details', errors });

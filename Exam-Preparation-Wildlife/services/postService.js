@@ -33,7 +33,6 @@ async function deletePostById(id) {
 
 async function vote(postId, userId, value) {
     const post = await getPostById(postId);
-    console.log(post, userId);
     if (post.votes.includes(userId)) {
         throw new Error('User has already voted!');
     }

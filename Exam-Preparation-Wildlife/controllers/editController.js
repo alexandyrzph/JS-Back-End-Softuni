@@ -12,7 +12,6 @@ router.get('/edit/:id', isUser(), async (req, res) => {
     if (req.session.user._id != post.author._id) {
         return res.redirect('/login');
     }
-    console.log(post);
 
     res.render('edit', { title: 'Edit Page', post });
 });
@@ -36,12 +35,10 @@ router.post('/edit/:id', isUser(), async (req, res) => {
         description: req.body.description,
     };
 
-
     try {
         await updatePost(id, post);
         res.redirect(`/catalog/details/${id}`);
     } catch (err) {
-        console.error(err);
         const errors = errorMapper(err);
         res.render('edit', { title: 'Edit Page', post, errors });
     }
