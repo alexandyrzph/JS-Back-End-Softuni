@@ -5,6 +5,7 @@ const router = require('express').Router();
 
 router.get('/catalog', async (req, res) => {
     const posts = (await getAllPosts()).map(postViewModel);
+
     res.render('catalog', { title: 'Catalog Page', posts });
 });
 
