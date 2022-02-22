@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types: { ObjectId } } = require('mongoose');
 
 // const NAME_PATTERN = /^[a-zA-Z-]+$/;
 // const EMAIL_PATTERN = /^([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z]+)$/;
@@ -13,7 +13,7 @@ const userSchema = new Schema({
     gender: {
         type: String, required: true
     },
-    tripsHistory: { type: String, required: true },
+    trips: { type: [ObjectId], default: [], ref: 'Trip' },
 });
 
 userSchema.index({ email: 1 }, {

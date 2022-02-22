@@ -1,8 +1,8 @@
 const { Schema, model, Types: { ObjectId } } = require('mongoose');
 
-const URL_PATTERN = /^https?:\/\/(.+)/;
+// const URL_PATTERN = /^https?:\/\/(.+)/;
 
-const postSchema = new Schema({
+const tripSchema = new Schema({
     startPoint: {
         type: String,
         required: true,
@@ -33,6 +33,6 @@ const postSchema = new Schema({
     buddies: { type: [ObjectId], default: [], ref: 'User' },
 });
 
-const Post = model('Post', postSchema);
+const Trip = model('Trip', tripSchema);
 
-module.exports = Post;
+module.exports = Trip;

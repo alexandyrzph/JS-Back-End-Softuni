@@ -18,7 +18,6 @@ module.exports = (app) => {
             secure: 'auto',
         }
     }));
-    app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(userSession());
 }

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('../models/User');
 
 
-const dbName = 'sharedTrips';
+const dbName = 'sharedtrip';
 
 const connectionString = `mongodb://localhost:27017/${dbName}`;
 
