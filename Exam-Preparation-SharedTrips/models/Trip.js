@@ -3,11 +3,11 @@ const { Schema, model, Types: { ObjectId } } = require('mongoose');
 // const URL_PATTERN = /^https?:\/\/(.+)/;
 
 const tripSchema = new Schema({
-    startPoint: {
+    start: {
         type: String,
         required: true,
     },
-    endPoint: {
+    end: {
         type: String,
         required: true,
     },
@@ -19,7 +19,7 @@ const tripSchema = new Schema({
         type: String,
         required: true,
     },
-    carImage: {
+    carImg: {
         type: String,
         required: true
     },
@@ -29,7 +29,7 @@ const tripSchema = new Schema({
     seats: { type: Number, required: true },
     price: { type: Number, required: true },
     description: { type: String, required: true },
-    creator: { type: ObjectId, ref: 'User' },
+    owner: { type: ObjectId, ref: 'User' },
     buddies: { type: [ObjectId], default: [], ref: 'User' },
 });
 
