@@ -1,5 +1,5 @@
 const { isUser } = require('../middleware/guards');
-const { createTrip } = require('../services/tripService');
+const { createTrip, getAllTrips } = require('../services/tripService');
 const errorMapper = require('../util/errorMapper');
 const router = require('express').Router();
 
@@ -16,8 +16,8 @@ router.post('/create', isUser(), async (req, res) => {
         time: req.body.time,
         carImg: req.body.carImg,
         carBrand: req.body.carBrand,
-        seats: req.body.seats,
-        price: req.body.price,
+        seats: Number(req.body.seats),
+        price: Number(req.body.price),
         description: req.body.description,
         owner: req.session.user._id,
     };
@@ -28,6 +28,12 @@ router.post('/create', isUser(), async (req, res) => {
         const errors = errorMapper(err);
         res.render('create', { title: 'Create Trip Offer', data: trip, errors });
     }
+});
+
+router.get('/trips', async (req, res) => {
+    const trips = await getAllTrips();
+    console.log(trips);
+    res.render('trips', { title: 'Catalog of all trips', trips });
 });
 
 module.exports = router;

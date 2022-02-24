@@ -6,10 +6,36 @@ async function createTrip(trip) {
 }
 
 async function getTripById(id) {
-    return Trip.findById(id);
+    return Trip.findById(id).lean();
+}
+
+async function getTripAndUsers(id) {
+    return Trip.findById(id).populate('owner').populate('buddies').lean();
+}
+
+async function getAllTrips() {
+    return Trip.find({}).lean();
+}
+
+async function updateTrip(id, trip) {
+    const existing = await Trip.findById(id);
+    existing.start = trip.start;
+    existing.end = trip.end;
+    existing.date = trip.date;
+    existing.time = trip.time;
+    existing.carImg = trip.carImg;
+    existing.carBrand = trip.carBrand;
+    existing.seats = Number(trip.seats);
+    existing.price = Number(trip.price);
+    existing.description = trip.description;
+
+    await existing.save(); 
 }
 
 module.exports = {
     createTrip,
     getTripById,
+    getAllTrips,
+    getTripAndUsers,
+    updateTrip
 };
