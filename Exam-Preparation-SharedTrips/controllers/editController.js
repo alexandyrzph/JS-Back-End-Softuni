@@ -1,6 +1,6 @@
 const { isOwner } = require('../middleware/guards');
 const preload = require('../middleware/preload');
-const { updateTrip } = require('../services/tripService');
+const { updateTrip, deleteTrip } = require('../services/tripService');
 const errorMapper = require('../util/errorMapper');
 
 const router = require('express').Router();
@@ -28,7 +28,20 @@ router.post('/edit/:id', preload(), isOwner(), async (req, res) => {
     } catch (err) {
         console.error(err);
         const errors = errorMapper(err);
-        res.render('edit', { title: 'Edit Page', data: trip, errors });
+        trip._id = id;
+        res.render('edit', { title: 'Edit Page', trip, errors });
+    }
+
+});
+
+router.get('/delete/:id', preload(), isOwner(), async (req, res) => {
+    const id = req.params.id;
+    try {
+        await deleteTrip(id);
+        res.redirect('/trips');
+    } catch (err) {
+        console.error(err);
+        res.redirect('/login');
     }
 
 });

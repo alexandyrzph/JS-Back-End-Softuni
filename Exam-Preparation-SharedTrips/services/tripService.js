@@ -29,7 +29,20 @@ async function updateTrip(id, trip) {
     existing.price = Number(trip.price);
     existing.description = trip.description;
 
-    await existing.save(); 
+    await existing.save();
+}
+
+async function deleteTrip(id) {
+    await Trip.findByIdAndDelete(id);
+}
+
+async function joinTrip(tripId, userId) {
+    const trip = await Trip.findById(tripId);
+    if (trip.buddies.includes(userId)) {
+        throw new Error(`User already joined!`);
+    }
+    trip.buddies.push(userId);
+    await trip.save();
 }
 
 module.exports = {
@@ -37,5 +50,7 @@ module.exports = {
     getTripById,
     getAllTrips,
     getTripAndUsers,
-    updateTrip
+    updateTrip,
+    deleteTrip,
+    joinTrip
 };
