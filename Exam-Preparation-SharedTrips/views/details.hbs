@@ -17,11 +17,11 @@
             <div>
                 <!-- if there are joined buddies for the current trip separate them with comma and space", " -->
                 <p>
-                    {{#each trip.buddies}}
-                    {{email}}, 
+                    {{#if trip.buddiesList}}
+                    {{trip.buddiesList}}
                     {{else}}
                     there are no buddies yet...
-                    {{/each}}
+                    {{/if}}
                 </p>
             </div>
             <h5>Driver: <span>{{trip.owner.email}}</span> </h5>

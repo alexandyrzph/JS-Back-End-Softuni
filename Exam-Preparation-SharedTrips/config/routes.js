@@ -4,6 +4,8 @@ const tripController = require('../controllers/tripController');
 const detailsController = require('../controllers/detailsController');
 const editController = require('../controllers/editController');
 const joinController = require('../controllers/joinController');
+const profileController = require('../controllers/profileController');
+
 
 module.exports = (app) => {
     app.use(homeController);
@@ -12,6 +14,7 @@ module.exports = (app) => {
     app.use(detailsController);
     app.use(editController);
     app.use(joinController);
+    app.use(profileController);
 
     app.get('*', (req, res) => {
         res.render('404', { title: 'Not Found' });

@@ -32,7 +32,6 @@ router.post('/create', isUser(), async (req, res) => {
 
 router.get('/trips', async (req, res) => {
     const trips = await getAllTrips();
-    console.log(trips);
     res.render('trips', { title: 'Catalog of all trips', trips });
 });
 
